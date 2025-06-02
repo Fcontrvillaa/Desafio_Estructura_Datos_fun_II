@@ -1,11 +1,11 @@
 
 import sys 
 
-def filtrar_productos(precios, umbral, tipo_filtro='mayor'):  #filtro por defecto mayor
+def filtrar_productos(precios, umbral, tipo_filtro='mayor'):  #filtro. por defecto mayor
     """
     Filtra un diccionario de productos por precio.
     """
-    productos_filtrados = [] # almacenar los nombres de los productos que cumplen la condición
+    productos_filtrados = [] # productos que cumplen la condición
 
     if tipo_filtro == 'mayor': 
 
@@ -21,12 +21,12 @@ def filtrar_productos(precios, umbral, tipo_filtro='mayor'):  #filtro por defect
         return f"Los productos menores al umbral son: {', '.join(productos_filtrados)}" 
     
     else: 
-        return "Lo sentimos, no es una operación válida" # mensaje de error no es mayor ni menor
+        return "Lo sentimos, no es una operación válida" # no es mayor ni menor
 
-if __name__ == "__main__":
+
     
     # Diccionario de prueba
-    precios = {
+precios = {
         'Notebook': 700000,
         'Teclado': 25000,
         'Mouse': 12000,
@@ -37,25 +37,25 @@ if __name__ == "__main__":
 
    
 
-    if len(sys.argv) == 2: # si se proporciona solo el umbral
-        try:
-            umbral_valor = int(sys.argv[1]) 
-            print(filtrar_productos(precios, umbral_valor))
+if len(sys.argv) == 2: # solo el umbral
+    try:
+        umbral_valor = int(sys.argv[1]) 
+        print(filtrar_productos(precios, umbral_valor))
 
-        except ValueError: 
-            print("Error: El umbral debe ser un número entero.")
+    except ValueError: 
+        print("Error: El umbral debe ser un número entero.")
 
 
-    elif len(sys.argv) == 3: # umbral y el tipo de filtro
-        try:
-            umbral_valor = int(sys.argv[1])
-            tipo_filtro_valor = sys.argv[2].lower() # segundo argumento a minúsculas
+elif len(sys.argv) == 3: # umbral y tipo de filtro
+    try:
+        umbral_valor = int(sys.argv[1])
+        tipo_filtro_valor = sys.argv[2].lower() 
             
-            print(filtrar_productos(precios, umbral_valor, tipo_filtro_valor))
-        except ValueError: 
-            print("Error: El umbral debe ser un número entero.")
+        print(filtrar_productos(precios, umbral_valor, tipo_filtro_valor))
 
-    else: # Si no se entrega la cantidad correcta de argumentos
+    except ValueError: 
+        print("Error: El Umbral debe ser un número entero.")
+
+else: # si no se entrega la cantidad correcta de argumentos
         print("Uso: python filtro.py <umbral> [mayor / menor]")
-        print("Ej: python filtro.py 30000")
-        print("Ej: python filtro.py 30000 menor")
+        print("Ejemplo: python filtro.py 30000 menor")
